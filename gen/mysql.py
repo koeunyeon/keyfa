@@ -1,7 +1,10 @@
 import sys
+from datetime import datetime
 
 def gen_db(db_name):
-    print (f"create database `{db_name}` /*!40100 COLLATE 'utf8mb4_general_ci' */;")
+    query = f"create database `{db_name}` /*!40100 COLLATE 'utf8mb4_general_ci' */;" 
+    print (query)
+    return query
 
 def _get_column_query(column):
     if "." in column:
@@ -104,23 +107,39 @@ CREATE TABLE `{table_name}`
         column_add_query = f"ALTER TABLE `{table_name}` ADD {column_query};"
         column_query_list.append(column_add_query)
     
-    print (basic_query)
-    print ("\n".join(column_query_list))
+    ret = basic_query
+    ret += "\n".join(column_query_list)
+    print (ret)
+    return ret
 
 def run():
     cmd = sys.argv[1].lower()
     args = " ".join(sys.argv[2:])
 
+    ret =  None
     if cmd == 'db':
         db_name = sys.argv[2]
-        gen_db(db_name)
+        ret = gen_db(db_name)
     elif cmd == 'table':        
         table_name = args.split(":")[0].strip()
         columns = [x.strip() for x in args.split(":")[1].strip().split(",")]        
-        gen_table(table_name, columns)
+        ret = gen_table(table_name, columns)
+    
+    if ret is not None:
+        with open("./mysql.gen.log", mode='a', encoding='utf-8') as f:
+            now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            write_content = f"""
+=========================
+{now}
+{ret}
+""".strip()
+            f.write(write_content + "\n")
+        
+        print ("=========================")
+        print ("executed. check mysql.gen.log file")
 
 
-# python db.py db fc
-# python db.py table product: name, category_id, price.type=int.default=0
+# python mysql.py db keyfa
+# python mysql.py table product: name, category_id, price.type=int.default=0
 run()
 

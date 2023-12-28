@@ -1,4 +1,4 @@
-from keyfa.util.entityutil import column
+from keyfa.rdb.entityutil import column
 
 class BaseEntity:
     id = column("id") # same as Column(Integer, primary_key=True, index=True)

@@ -26,7 +26,7 @@ def middleware(app, middleware_dir = "middleware", *manual_middlewares):
     manual_middlewares.reverse()
     for middleware_path in manual_middlewares:
         middleware_class = get_middleware_class(middleware_path)
-        app.add_middleware(middleware_class)
+        app.add_middleware(middleware_class)        
 
     middlewares = os.listdir("./" + middleware_dir)    
     for middleware_path in middlewares:
@@ -38,7 +38,6 @@ def middleware(app, middleware_dir = "middleware", *manual_middlewares):
 
         middleware_class = get_middleware_class(middleware_path)
         app.add_middleware(middleware_class)
-    
 
 
 def router(app, router_dir = "router", router_instance_name="router"):
@@ -67,7 +66,7 @@ def cors(app):
         )
 def import_keyfa(app):
     #import key core
-    middleware(app, "keyfa/middleware", "responsemiddleware")
+    middleware(app, "keyfa/middleware")
     router(app, router_dir="keyfa/router")
 
     # import user modules
