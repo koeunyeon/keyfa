@@ -1,0 +1,33 @@
+name: dev
+rdb:
+  type: mysql
+  echo: true
+  host: 127.0.0.1
+  port: 3306
+  dbname: devmini
+  username: devmini
+  userpass: 1234
+server:
+  host: 0.0.0.0
+  port: 5000
+  reload: true
+  ssl_certfile:
+  ssl_keyfile:
+  ssl_keypass:
+log:
+  path: logs
+  name: keyfalog
+cors:
+  allow_origins:
+    - http://localhost:5500
+    - http://localhost:6500
+jwt:
+  secret: H9hhfSw1MU
+  algorithm: HS256
+  expired_days: 0  
+  expired_seconds: 0
+  expired_minutes: 0
+  expired_hours: 2
+  expired_weeks: 0
+extra:
+  regist_expired_hour: 2
