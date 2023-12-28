@@ -2,3 +2,4 @@ __pycache__
 mysql.gen.log
 *.log
 *.log.*
+*.zip

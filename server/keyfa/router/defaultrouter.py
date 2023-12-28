@@ -3,7 +3,7 @@ from fastapi.responses import PlainTextResponse
 
 
 import yaml
-router = APIRouter(prefix="/keyfa", tags=["KEY FastAPI Default"])
+router = APIRouter(prefix="/keyfa", tags=["KEYFA Default"])
 
 
 @router.get("/health")

@@ -6,7 +6,7 @@ from contextlib import asynccontextmanager
 from keyfa.config import Config
 from keyfa.util.importutil import import_keyfa
 
-from keyfa.logmodule.logfactory import get_logger, logging
+from keyfa.util.logutil import get_logger, logging
 
 def create_app() -> FastAPI:
     @asynccontextmanager

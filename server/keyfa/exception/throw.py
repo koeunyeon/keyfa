@@ -2,7 +2,7 @@ import traceback
 from starlette.responses import JSONResponse
 
 from keyfa.schema.baseresponseschema import ResponseSchema, ErrorResponseSchema
-from keyfa.logmodule.logfactory import get_logger
+from keyfa.util.logutil import get_logger
 
 logger = get_logger()
 

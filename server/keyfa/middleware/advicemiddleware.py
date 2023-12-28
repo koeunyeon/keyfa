@@ -4,7 +4,7 @@ from starlette.middleware.base import (
     RequestResponseEndpoint,
 )
 
-from keyfa.logmodule.logfactory import get_logger
+from keyfa.util.logutil import get_logger
 from keyfa.exception.responseexception import ResponseException
 from keyfa.exception.throw import throw
 from keyfa.rdb.lifecycle import AsyncLifecycle
