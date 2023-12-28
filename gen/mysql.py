@@ -116,6 +116,8 @@ def run():
     cmd = sys.argv[1].lower()
     args = " ".join(sys.argv[2:])
 
+    full_cmd = " ".join(sys.argv[1:])
+
     ret =  None
     if cmd == 'db':
         db_name = sys.argv[2]
@@ -131,6 +133,8 @@ def run():
             write_content = f"""
 =========================
 {now}
+{full_cmd}
+-------------------------
 {ret}
 """.strip()
             f.write(write_content + "\n")
@@ -139,7 +143,7 @@ def run():
         print ("executed. check mysql.gen.log file")
 
 
-# python mysql.py db keyfa
+# python mysql.py db keyfa_db
 # python mysql.py table product: name, category_id, price.type=int.default=0
 run()
 

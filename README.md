@@ -44,10 +44,40 @@ http://localhost:5000/docs#/ 에 접속했을 때 `/keyfa/health`, `/keyfa/opena
 ## MySQL 데이터베이스 생성
 ```
 cd gen
-python mysql.py db db_keyfa
+python mysql.py db keyfa_db
 ```
-`db_keyfa`는 원하시는 데이터베이스 이름으로 변경하세요.
+`keyfa_db`는 원하시는 데이터베이스 이름으로 변경하세요.
 
 터미널 출력에 DML 쿼리가 보여집니다. 또한 `gen/mysql.gen.log` 파일에도 기록이 쌓입니다.
 ```
+db keyfa_db
+-------------------------
+create database `keyfa_db` /*!40100 COLLATE 'utf8mb4_general_ci' */;
 ```
+
+해당 쿼리를 복사해서 DBMS 툴에 붙여넣고 실행하세요.
+
+## MySQL 테이블 생성
+```
+python mysql.py table product: name, category_id, price.type=int.default=0
+```
+
+`mysql.gen.log`
+```
+table product: name, category_id, price.type=int.default=0
+-------------------------
+
+CREATE TABLE `product` 
+( 
+    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB CHARSET=utf8mb4 COLLATE utf8mb4_general_ci;    
+    ALTER TABLE `product` ADD `name` VARCHAR(255) NULL  ;
+ALTER TABLE `product` ADD `category_id` INT UNSIGNED NULL  ;
+ALTER TABLE `product` ADD `price` INT NULL DEFAULT '0' ;
+ALTER TABLE `product` ADD `created_at` datetime NOT NULL  DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE `product` ADD `updated_at` datetime NULL  on update CURRENT_TIMESTAMP;
+ALTER TABLE `product` ADD `use_yn` CHAR(1) NOT NULL DEFAULT 'Y' ;
+```
+
+해당 쿼리를 복사해서 DBMS 툴에 붙여넣고 실행하세요.
