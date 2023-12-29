@@ -1,6 +1,6 @@
 # keyfa
 keyfa(**k**o**e**un**y**eon **f**ast **a**pi)는 [FastAPI](https://fastapi.tiangolo.com/ko/) 기반 프로젝트 템플릿입니다.  
-FastAPI로 프로젝트를 구성할 때마다 매 번 똑같은 작업을 해야 하는 것이 지겨워서 템플릿화한 후 공개합니다.
+FastAPI로 프로젝트를 구성할 때마다 매 번 똑같은 작업을 해야 하는 것이 지겨워서 템플릿화한 후 공개합니다.  
 원래는 [devmini](https://github.com/koeunyeon/devmini) 프로젝트의 일부였으나, 현재는 독립적으로 관리됩니다.
 
 # 포함된 기능
@@ -81,3 +81,16 @@ ALTER TABLE `product` ADD `use_yn` CHAR(1) NOT NULL DEFAULT 'Y' ;
 ```
 
 해당 쿼리를 복사해서 DBMS 툴에 붙여넣고 실행하세요.
+
+## 접속 정보 설정
+`server/config/dev.yaml` 파일을 열고 `rdb` 항목을 해당 환경에 맞도록 수정합니다.
+```yaml
+rdb:
+  type: mysql
+  echo: true
+  host: 127.0.0.1
+  port: 3306
+  dbname: devmini
+  username: devmini
+  userpass: 1234
+```
