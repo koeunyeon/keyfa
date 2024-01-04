@@ -62,6 +62,7 @@ create database `keyfa_db` /*!40100 COLLATE 'utf8mb4_general_ci' */;
 python mysql.py table product: name, category_id, price.type=int.default=0
 ```
 
+ 결과는 다음과 같습니다.  
 `mysql.gen.log`
 ```
 table product: name, category_id, price.type=int.default=0
@@ -93,4 +94,4 @@ rdb:
   dbname: devmini
   username: devmini
   userpass: 1234
-```
+``` 
